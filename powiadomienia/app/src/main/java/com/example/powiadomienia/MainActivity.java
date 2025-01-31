@@ -6,6 +6,8 @@ import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
@@ -28,8 +30,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btn = findViewById(R.id.button);
+        Button btn2=findViewById(R.id.button2);
+        Button btn3=findViewById(R.id.button3);
+
         createNotificationChannel();
         btn.setOnClickListener(view -> setNotification());
+        btn2.setOnClickListener(view -> setNotificationlong());
     }
     private  void createNotificationChannel(){
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
@@ -46,15 +52,40 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-    private void  setNotification(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
-            if(checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED){
-                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},  1);
+    private void  setNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
                 return;
             }
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this,CHANEL_ID).setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Nowe Powiadomienie 3TP").setContentText("Tresc powiadomienia").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANEL_ID).setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Nowe Powiadomienie 3TP").setContentText("Tresc powiadomienia").setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            notificationManager.notify(1,builder.build());
+            notificationManager.notify(1, builder.build());
+
+        }
+    }
+    private void  setNotificationlong() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+                return;
+            }
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANEL_ID).setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Nowe Powiadomienie 3TP").setStyle(new NotificationCompat.BigTextStyle().bigText("fvvvvvvvvvvvvvvvvvvvvvvvvvsdvdfvfdvdfvdfvdfvdfvdfvdfvdfvdfvdfvdfvdfvdfvdfvdfvdfvdfvvf")).setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            notificationManager.notify(1, builder.build());
+
+        }
+    }
+    private void  largeIcon() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+                return;
+            }
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher_background);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANEL_ID).setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Nowe Powiadomienie 3TP").setStyle(new NotificationCompat.BigPictureStyle().bigLargeIcon(bitmap)).setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            notificationManager.notify(1, builder.build());
 
         }
     }

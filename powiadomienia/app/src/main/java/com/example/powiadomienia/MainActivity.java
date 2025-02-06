@@ -83,10 +83,11 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_launcher_background);
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANEL_ID).setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Nowe Powiadomienie 3TP").setStyle(new NotificationCompat.BigPictureStyle().bigLargeIcon(bitmap)).setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANEL_ID).setSmallIcon(R.drawable.ic_launcher_background).setContentTitle("Nowe Powiadomienie 3TP").setStyle(new NotificationCompat.BigPictureStyle().bigLargeIcon(bitmap )).setPriority(NotificationCompat.PRIORITY_DEFAULT).setAutoCancel(true);
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
             notificationManager.notify(1, builder.build());
 
         }
     }
+
 }

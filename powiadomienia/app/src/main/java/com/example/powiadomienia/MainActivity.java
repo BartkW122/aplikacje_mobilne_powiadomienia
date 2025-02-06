@@ -22,6 +22,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CHANEL_ID = "my_chanel_id";
+    private  static  int ID=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btn = findViewById(R.id.button);
+
+        btn.setOnClickListener(v ->{
+            NotificationHelper.sendNotification(ID,this,"Default Notification","This is default Notification", 1,0);
+            ID++;
+        });
+
         Button btn2=findViewById(R.id.button2);
+
+        btn2.setOnClickListener(v ->{
+            NotificationHelper.sendNotification(ID,this,"Default Notification","This is default Notificationsdsvwervgvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv", 1,0);
+            ID++;
+        });
+
+
         Button btn3=findViewById(R.id.button3);
+
+        btn3.setOnClickListener(v ->{
+            NotificationHelper.sendNotification(ID,this,"Default Notification","This is default Notification", 2,R.drawable.ic_launcher_background);
+            ID++;
+        });
+
 
         createNotificationChannel();
         btn.setOnClickListener(view -> setNotification());

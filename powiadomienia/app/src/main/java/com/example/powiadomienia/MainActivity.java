@@ -1,6 +1,14 @@
 package com.example.powiadomienia;
 
+import static android.app.NotificationManager.IMPORTANCE_DEFAULT;
+import static android.app.NotificationManager.IMPORTANCE_HIGH;
+import static android.app.NotificationManager.IMPORTANCE_LOW;
 import static android.os.Build.VERSION.SDK_INT;
+
+import static com.example.powiadomienia.NotificationHelper.CHANEL_ID_DEFAULT;
+import static com.example.powiadomienia.NotificationHelper.CHANEL_ID_HIGH;
+import static com.example.powiadomienia.NotificationHelper.CHANEL_ID_LOW;
+import static com.example.powiadomienia.NotificationHelper.creatNotificationChannel;
 
 import android.Manifest;
 import android.app.NotificationChannel;
@@ -34,14 +42,15 @@ public class MainActivity extends AppCompatActivity {
         Button btn = findViewById(R.id.button);
 
         btn.setOnClickListener(v ->{
-            NotificationHelper.sendNotification(ID,this,"Default Notification","This is default Notification", 1,0);
+            NotificationHelper.sendNotification(ID,CHANEL_ID_DEFAULT,this,"Default Notification","This is default Notification", 1,0);
             ID++;
+
         });
 
         Button btn2=findViewById(R.id.button2);
 
         btn2.setOnClickListener(v ->{
-            NotificationHelper.sendNotification(ID,this,"Default Notification","This is default Notificationsdsvwervgvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv", 1,0);
+            NotificationHelper.sendNotification(ID,CHANEL_ID_LOW,this,"Default Notification","This is default Notificationsdsvwervgvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv", 1,0);
             ID++;
         });
 
@@ -49,16 +58,19 @@ public class MainActivity extends AppCompatActivity {
         Button btn3=findViewById(R.id.button3);
 
         btn3.setOnClickListener(v ->{
-            NotificationHelper.sendNotification(ID,this,"Default Notification","This is default Notification", 2,R.drawable.ic_launcher_background);
+            NotificationHelper.sendNotification(ID,CHANEL_ID_HIGH,this,"Default Notification","This is default Notification", 2,R.drawable.ic_launcher_background);
             ID++;
         });
 
 
-        createNotificationChannel();
-        btn.setOnClickListener(view -> setNotification());
+        //createNotificationChannel();
+        //creatNotificationChannel();
+        /*btn.setOnClickListener(view -> setNotification());
         btn2.setOnClickListener(view -> setNotificationlong());
+        btn3.setOnClickListener(view -> largeIcon());*/
     }
-    private  void createNotificationChannel(){
+
+    /*private  void createNotificationChannel(){
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
 
             CharSequence name = "kanal_Powiadomien";
@@ -72,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(channel);
 
         }
-    }
-    private void  setNotification() {
+    }*/
+
+    /*private void  setNotification() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
@@ -109,6 +122,6 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.notify(1, builder.build());
 
         }
-    }
+    }*/
 
 }
